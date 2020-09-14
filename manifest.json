@@ -4,5 +4,5 @@
     "documentation": "https://github.com/konradb3/homeassistant_salus",
     "dependencies": [],
     "codeowners": ["konradb3"],
-    "requirements": ["git+https://github.com/konradb3/pyit600.git@fix_thermostats_detection#pyit600"]
+    "requirements": ["pyit600==0.0.3"]
   }
