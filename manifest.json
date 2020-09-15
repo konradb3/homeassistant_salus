@@ -4,5 +4,5 @@
     "documentation": "https://github.com/konradb3/homeassistant_salus",
     "dependencies": [],
     "codeowners": ["konradb3"],
-    "requirements": ["pyit600==0.0.3"]
+    "requirements": ["pyit600==0.0.6"]
   }
