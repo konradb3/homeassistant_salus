@@ -1,0 +1,24 @@
+{
+  "config": {
+    "flow_title": "Salus: {name}",
+    "step": {
+      "user": {
+        "title": "Connect to Salus Gateway",
+        "description": "You will need IP address and the EUID, written down on the bottom of your gateway under microUSB port (eg. 001E5E0D32906128).",
+        "data": {
+          "host": "IP Address",
+          "token": "EUID",
+          "name": "Name of the Gateway"
+        }
+      }
+    },
+    "error": {
+      "connect_error": "Failed to connect, please check IP address",
+      "auth_error": "Failed to connect, please check token"
+    },
+    "abort": {
+      "already_configured": "Device is already configured",
+      "already_in_progress": "Config flow for this Salus device is already in progress."
+    }
+  }
+}
