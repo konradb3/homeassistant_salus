@@ -2,7 +2,6 @@
 from datetime import timedelta
 import logging
 import async_timeout
-import sys
 
 import voluptuous as vol
 from homeassistant.components.climate import PLATFORM_SCHEMA, ClimateEntity
@@ -28,12 +27,10 @@ from homeassistant.const import (
     CONF_TOKEN,
     PRECISION_HALVES,
     STATE_ON,
-    TEMP_CELSIUS
+    TEMP_CELSIUS,
 )
 import homeassistant.helpers.config_validation as cv
-from homeassistant.helpers import entity
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
-from homeassistant.util import dt as dt_util
 
 from pyit600.exceptions import IT600AuthenticationError, IT600ConnectionError
 from pyit600.gateway import IT600Gateway
@@ -49,6 +46,12 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Required(CONF_TOKEN): cv.string,
     }
 )
+
+
+async def async_setup_entry(hass, config_entry, async_add_entities):
+    """Set up Salus thermostats from a config entry."""
+    await async_setup_platform(hass, config_entry.data, async_add_entities)
+
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
     """Set up the sensor platform."""
@@ -72,7 +75,6 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         async with async_timeout.timeout(10):
             await gateway.poll_status()
             return gateway.get_climate_devices()
-        
 
     coordinator = DataUpdateCoordinator(
         hass,
