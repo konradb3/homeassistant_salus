@@ -1,0 +1,24 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Urządzenie jest już skonfigurowane",
+            "already_in_progress": "Proces konfiguracji dla urządzenia Salus już trwa."
+        },
+        "error": {
+            "auth_error": "Błąd połączenia, sprawdź token",
+            "connect_error": "Błąd połączenia, sprawdź addres IP"
+        },
+        "flow_title": "Salus: {name}",
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Adres IP",
+                    "name": "Nazwa bramki",
+                    "token": "EUID"
+                },
+                "description": "Potrzebujesz adres IP oraz EUID, który jest wydrukowanyna spodzie bramkipod portem microUSB (np. 001E5E0D32906128).",
+                "title": "Połącz do bramki Salus"
+            }
+        }
+    }
+}
