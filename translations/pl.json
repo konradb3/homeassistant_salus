@@ -5,7 +5,7 @@
             "already_in_progress": "Proces konfiguracji dla urządzenia Salus już trwa."
         },
         "error": {
-            "auth_error": "Błąd połączenia, sprawdź token",
+            "auth_error": "Błąd połączenia, sprawdź EUID",
             "connect_error": "Błąd połączenia, sprawdź adres IP"
         },
         "flow_title": "Salus: {name}",
