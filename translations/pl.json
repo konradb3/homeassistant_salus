@@ -6,7 +6,7 @@
         },
         "error": {
             "auth_error": "Błąd połączenia, sprawdź token",
-            "connect_error": "Błąd połączenia, sprawdź addres IP"
+            "connect_error": "Błąd połączenia, sprawdź adres IP"
         },
         "flow_title": "Salus: {name}",
         "step": {
@@ -16,8 +16,8 @@
                     "name": "Nazwa bramki",
                     "token": "EUID"
                 },
-                "description": "Potrzebujesz adres IP oraz EUID, który jest wydrukowanyna spodzie bramkipod portem microUSB (np. 001E5E0D32906128).",
-                "title": "Połącz do bramki Salus"
+                "description": "Potrzebujesz adresu IP oraz EUID, który jest wydrukowany na spodzie bramki pod portem microUSB (np. 001E5E0D32906128).",
+                "title": "Połącz bramkę Salus"
             }
         }
     }
