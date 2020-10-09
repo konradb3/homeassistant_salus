@@ -1,4 +1,4 @@
-"""Support for Radio Thermostat wifi-enabled home thermostats."""
+"""Support for thermostats."""
 from datetime import timedelta
 import logging
 import async_timeout
@@ -89,11 +89,11 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     # Fetch initial data so we have data when entities subscribe
     await coordinator.async_refresh()
 
-    async_add_entities(SalusThermostate(coordinator, idx, gateway) for idx
+    async_add_entities(SalusThermostat(coordinator, idx, gateway) for idx
                        in coordinator.data)
 
 
-class SalusThermostate(ClimateEntity):
+class SalusThermostat(ClimateEntity):
     """Representation of a Sensor."""
 
     def __init__(self, coordinator, idx, gateway):
