@@ -128,10 +128,11 @@ class SalusThermostat(ClimateEntity):
     def device_info(self):
         """Return the device info."""
         return {
-            "identifiers": {("salus", self._coordinator.data.get(self._idx).unique_id)},
             "name": self._coordinator.data.get(self._idx).name,
-            "manufacturer": "Salus",
-            "model": "xxx",
+            "identifiers": {("salus", self._coordinator.data.get(self._idx).unique_id)},
+            "manufacturer": self._coordinator.data.get(self._idx).manufacturer,
+            "model": self._coordinator.data.get(self._idx).model,
+            "sw_version": self._coordinator.data.get(self._idx).sw_version
         }
 
     @property
