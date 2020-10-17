@@ -1,10 +1,10 @@
-"""Support for binary (door/window/smoke/leak) sensors."""
+"""Support for cover (roller shutter) devices."""
 from datetime import timedelta
 import logging
 import async_timeout
 
 import voluptuous as vol
-from homeassistant.components.binary_sensor import PLATFORM_SCHEMA, BinarySensorEntity
+from homeassistant.components.cover import PLATFORM_SCHEMA, ATTR_POSITION, CoverEntity
 
 from homeassistant.const import (
     CONF_HOST,
@@ -26,13 +26,14 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     }
 )
 
+
 async def async_setup_entry(hass, config_entry, async_add_entities):
-    """Set up Salus thermostats from a config entry."""
+    """Set up Salus cover devices from a config entry."""
     await async_setup_platform(hass, config_entry.data, async_add_entities)
 
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
-    """Set up the binary_sensor platform."""
+    """Set up the cover platform."""
 
     gateway = IT600Gateway(host=config[CONF_HOST], euid=config[CONF_TOKEN])
     try:
@@ -52,7 +53,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         """
         async with async_timeout.timeout(10):
             await gateway.poll_status()
-            return gateway.get_binary_sensor_devices()
+            return gateway.get_cover_devices()
 
     coordinator = DataUpdateCoordinator(
         hass,
@@ -67,11 +68,11 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     # Fetch initial data so we have data when entities subscribe
     await coordinator.async_refresh()
 
-    async_add_entities(SalusBinarySensor(coordinator, idx, gateway) for idx
+    async_add_entities(SalusCover(coordinator, idx, gateway) for idx
                        in coordinator.data)
 
 
-class SalusBinarySensor(BinarySensorEntity):
+class SalusCover(CoverEntity):
     """Representation of a binary sensor."""
 
     def __init__(self, coordinator, idx, gateway):
@@ -124,11 +125,49 @@ class SalusBinarySensor(BinarySensorEntity):
         return self._coordinator.data.get(self._idx).name
 
     @property
-    def is_on(self):
-        """Return the state of the sensor."""
-        return self._coordinator.data.get(self._idx).is_on
+    def supported_features(self):
+        """Return the list of supported features."""
+        return self._coordinator.data.get(self._idx).supported_features
 
     @property
     def device_class(self):
         """Return the device class of the sensor."""
         return self._coordinator.data.get(self._idx).device_class
+
+    @property
+    def current_cover_position(self):
+        """Return the current position of the cover."""
+        return self._coordinator.data.get(self._idx).current_cover_position
+
+    @property
+    def is_opening(self):
+        """Return if the cover is opening or not."""
+        return self._coordinator.data.get(self._idx).is_opening
+
+    @property
+    def is_closing(self):
+        """Return if the cover is closing or not."""
+        return self._coordinator.data.get(self._idx).is_closing
+
+    @property
+    def is_closed(self):
+        """Return if the cover is closed."""
+        return self._coordinator.data.get(self._idx).is_closed
+
+    async def async_open_cover(self, **kwargs):
+        """Open the cover."""
+        await self._gateway.open_cover(self._idx)
+        await self._coordinator.async_request_refresh()
+
+    async def async_close_cover(self, **kwargs):
+        """Close the cover."""
+        await self._gateway.close_cover(self._idx)
+        await self._coordinator.async_request_refresh()
+
+    async def async_set_cover_position(self, **kwargs):
+        """Move the cover to a specific position."""
+        position = kwargs.get(ATTR_POSITION)
+        if position is None:
+            return
+        await self._gateway.set_cover_position(self._idx, position)
+        await self._coordinator.async_request_refresh()

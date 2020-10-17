@@ -1,29 +1,17 @@
-# Home Assistant integration of Salus iT600 smart devices
+# HomeAssistant - Salus iT600 Custom Component
 
-## Instalation
-Checkout this repository to `config/custom_components/salus` of your Home Assistant instalation.
+# What This Is
 
-## Configuration
+This is a custom component to allows you to control and monitor your Salus iT600 smart home devices locally through Salus UG600 universal gateway.
 
-There are two ways to configure this integration.
+# Supported devices
 
-1. In Home Assistant web interface go to Configuration -> Integrations and then press "+" button and select "Salus iT600".
+See the [readme of underlying pyit600 library](https://github.com/jvitkauskas/pyit600/blob/master/README.md)
 
-2. Another way is to configure it through `configuration.yaml`.
-Example :
-```yaml
-climate:
-  - platform: salus
-    host: "192.168.0.15"
-    token: 001E5C020214B243
+# Installation and Configuration
 
-binary_sensor:
-  - platform: salus
-    host: "192.168.0.15"
-    token: 001E5C020214B243
-```
+Copy files from this repository to `/config/custom_components/salus` of your Home Assistant instalation.
 
-* host - hostname or IP address of your Salus gateway
-* token - EUID printed on bottom of your gateway
+To configure this integration, go to Home Assistant web interface Configuration -> Integrations and then press "+" button and select "Salus iT600".
 
 When you are done with configuration you should see your devices in Configuration -> Integrations -> Entities
