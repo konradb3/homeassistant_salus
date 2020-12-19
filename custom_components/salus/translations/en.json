@@ -16,7 +16,7 @@
                     "name": "Name of the Gateway",
                     "token": "EUID"
                 },
-                "description": "You will need IP address and the EUID, written down on the bottom of your gateway under microUSB port (eg. 001E5E0D32906128).",
+                "description": "You will need IP address and first 16 symbols the EUID (without spaces), written down on the bottom of your gateway under microUSB port (eg. 001E5E0D32906128).",
                 "title": "Connect to Salus Gateway"
             }
         }
