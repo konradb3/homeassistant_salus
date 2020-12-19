@@ -1,4 +1,4 @@
-"""Config flow to configure Salus iT600 gateway."""
+"""Config flow to configure Salus iT600 component."""
 import logging
 
 import voluptuous as vol
@@ -50,7 +50,6 @@ class SalusFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                         CONF_FLOW_TYPE: CONF_USER,
                         CONF_HOST: host,
                         CONF_TOKEN: token,
-                        "model": "xxx",
                         "mac": unique_id,
                     },
                 )

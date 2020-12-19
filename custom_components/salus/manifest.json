@@ -1,0 +1,9 @@
+{
+  "codeowners": ["@jvitkauskas"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/jvitkauskas/homeassistant_salus/",
+  "domain": "salus",
+  "name": "Salus iT600",
+  "requirements": ["pyit600==0.1.9"]
+}

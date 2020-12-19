@@ -1,9 +1,0 @@
-{
-    "domain": "salus",
-    "name": "Salus iT600",
-    "documentation": "https://github.com/konradb3/homeassistant_salus",
-    "dependencies": [],
-    "codeowners": ["konradb3"],
-    "requirements": ["pyit600==0.0.6"],
-    "config_flow": true
-}
