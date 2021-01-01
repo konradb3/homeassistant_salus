@@ -24,4 +24,5 @@ Check if you have "Local Wifi Mode" enabled:
 * Double tap your Gateway to open info screen
 * Press gear icon to enter configuration
 * Scroll down a bit and check if "Disable Local WiFi Mode" is set to "No"
-* Restart Gateway after changing the setting
+* Scroll all the way down and save settings
+* Restart Gateway by unplugging/plugging USB power
