@@ -15,3 +15,13 @@ Copy files from this repository to `/config/custom_components/salus` of your Hom
 To configure this integration, go to Home Assistant web interface Configuration -> Integrations and then press "+" button and select "Salus iT600".
 
 When you are done with configuration you should see your devices in Configuration -> Integrations -> Entities
+
+# Troubleshooting
+
+Check if you have "Local Wifi Mode" enabled:
+* Open Smart Home app on your phone
+* Sign in
+* Double tap your Gateway to open info screen
+* Press gear icon to enter configuration
+* Scroll down a bit and check if "Disable Local WiFi Mode" is set to "No"
+* Restart Gateway after changing the setting
