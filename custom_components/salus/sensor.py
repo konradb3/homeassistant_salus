@@ -15,8 +15,7 @@ from homeassistant.const import (
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
-from pyit600.exceptions import IT600AuthenticationError, IT600ConnectionError
-from pyit600.gateway import IT600Gateway
+from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -30,21 +29,8 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Set up Salus sensors from a config entry."""
-    await async_setup_platform(hass, config_entry.data, async_add_entities)
 
-
-async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
-    """Set up the sensor platform."""
-
-    gateway = IT600Gateway(host=config[CONF_HOST], euid=config[CONF_TOKEN])
-    try:
-        await gateway.connect()
-    except IT600ConnectionError as ce:
-        _LOGGER.error("Connection error: check if you have specified gateway's HOST correctly.")
-        return False
-    except IT600AuthenticationError as ae:
-        _LOGGER.error("Authentication error: check if you have specified gateway's TOKEN correctly.")
-        return False
+    gateway = hass.data[DOMAIN][config_entry.entry_id]
 
     async def async_update_data():
         """Fetch data from API endpoint.
@@ -71,6 +57,11 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
 
     async_add_entities(SalusSensor(coordinator, idx, gateway) for idx
                        in coordinator.data)
+
+
+async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
+    """Set up the sensor platform."""
+    pass
 
 
 class SalusSensor(Entity):
