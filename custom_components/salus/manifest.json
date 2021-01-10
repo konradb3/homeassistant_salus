@@ -5,5 +5,5 @@
   "documentation": "https://github.com/jvitkauskas/homeassistant_salus/",
   "domain": "salus",
   "name": "Salus iT600",
-  "requirements": ["pyit600==0.2.4"]
+  "requirements": ["pyit600==0.2.5"]
 }
