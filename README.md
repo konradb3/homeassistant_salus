@@ -10,7 +10,7 @@ See the [readme of underlying pyit600 library](https://github.com/jvitkauskas/py
 
 # Installation and Configuration
 
-Copy files from this repository to `/config/custom_components/salus` of your Home Assistant instalation.
+Copy files from this repository to `/config` of your Home Assistant instalation.
 
 To configure this integration, go to Home Assistant web interface Configuration -> Integrations and then press "+" button and select "Salus iT600".
 
