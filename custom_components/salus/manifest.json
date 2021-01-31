@@ -1,11 +1,13 @@
 {
-  "codeowners": ["@jvitkauskas"],
-  "config_flow": true,
-  "dependencies": [],
-  "documentation": "https://github.com/jvitkauskas/homeassistant_salus",
   "domain": "salus",
   "name": "Salus iT600",
+  "config_flow": true,
+  "documentation": "https://github.com/jvitkauskas/homeassistant_salus",
+  "issue_tracker": "https://github.com/jvitkauskas/homeassistant_salus/issues",
   "requirements": ["pyit600==0.2.5"],
-  "version": "0.2.5",
-  "issue_tracker": "https://github.com/jvitkauskas/homeassistant_salus/issues"
+  "dependencies": [],
+  "codeowners": [
+    "@jvitkauskas"
+  ],
+  "version": "0.2.5"
 }
