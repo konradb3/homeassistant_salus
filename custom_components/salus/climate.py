@@ -141,7 +141,7 @@ class SalusThermostat(ClimateEntity):
     @property
     def current_humidity(self):
         """Return the current humidity."""
-        return self._coordinator.data.get(self._idx).humidity
+        return self._coordinator.data.get(self._idx).current_humidity
 
     @property
     def hvac_mode(self):
