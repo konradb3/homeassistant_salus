@@ -4,10 +4,10 @@
   "config_flow": true,
   "documentation": "https://github.com/jvitkauskas/homeassistant_salus",
   "issue_tracker": "https://github.com/jvitkauskas/homeassistant_salus/issues",
-  "requirements": ["pyit600==0.2.6"],
+  "requirements": ["pyit600==0.2.7"],
   "dependencies": [],
   "codeowners": [
     "@jvitkauskas"
   ],
-  "version": "0.2.6"
+  "version": "0.2.7"
 }
