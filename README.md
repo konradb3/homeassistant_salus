@@ -1,8 +1,12 @@
-# HomeAssistant - Salus iT600 Custom Component
+<p align="center">
+  <a href="https://github.com/jvitkauskas/homeassistant_salus"><img src="https://salus-smarthome.eu/wp-content/themes/salus-controls/img/logo.svg" height="140"></a>
+</p>
+
+# HomeAssistant - Salus Conrols iT600 Smart Home Custom Component
 
 # What This Is
 
-This is a custom component to allows you to control and monitor your Salus iT600 smart home devices locally through Salus UG600 universal gateway.
+This is a custom component to allows you to control and monitor your Salus iT600 smart home devices locally through Salus Controls UGE600 / UGE600 universal gateway.
 
 # Supported devices
 
@@ -10,6 +14,12 @@ See the [readme of underlying pyit600 library](https://github.com/jvitkauskas/py
 
 # Installation and Configuration
 
+## HACS (recommended)
+
+This card is available in [HACS](https://hacs.xyz/) (Home Assistant Community Store).
+*HACS is a third party community store and is not included in Home Assistant out of the box.*
+
+## Manual install
 Copy `custom_components` folder from this repository to `/config` of your Home Assistant instalation.
 
 To configure this integration, go to Home Assistant web interface Configuration -> Integrations and then press "+" button and select "Salus iT600".
