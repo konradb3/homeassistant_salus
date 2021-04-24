@@ -2,7 +2,7 @@
   <a href="https://github.com/jvitkauskas/homeassistant_salus"><img src="https://salus-smarthome.eu/wp-content/themes/salus-controls/img/logo.svg" height="140"></a>
 </p>
 
-# HomeAssistant - Salus Conrols iT600 Smart Home Custom Component
+# HomeAssistant - Salus Controls iT600 Smart Home Custom Component
 
 # What This Is
 
