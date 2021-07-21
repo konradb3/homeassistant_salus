@@ -199,6 +199,19 @@ class SalusThermostat(ClimateEntity):
         await self._gateway.set_climate_device_temperature(self._idx, temperature)
         await self._coordinator.async_request_refresh()
 
+    # TODO: Stubbing these out for now
+    async def async_set_locked(self, **kwargs):
+        """Set locked (true, false)."""
+        locked = False
+        await self._gateway.set_climate_device_locked(self._idx, locked)
+        await self._coordinator.async_request_refresh()
+
+    async def async_set_fan_mode(self, **kwargs):
+        """Set fan speed (auto, low, medium, high, off)."""
+        fan_mode = 'off'
+        await self._gateway.set_climate_device_fan_speed(self._idx, fan_mode)
+        await self._coordinator.async_request_refresh()
+
     async def async_set_hvac_mode(self, hvac_mode):
         """Set operation mode (auto, heat, off)."""
         if hvac_mode == HVAC_MODE_OFF:
