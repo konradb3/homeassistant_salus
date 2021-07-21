@@ -179,6 +179,18 @@ class SalusThermostat(ClimateEntity):
     def preset_modes(self):
         return self._coordinator.data.get(self._idx).preset_modes
 
+    @property
+    def fan_mode(self):
+        return self._coordinator.data.get(self._idx).fan_mode
+
+    @property
+    def fan_modes(self):
+        return self._coordinator.data.get(self._idx).fan_modes
+
+    @property
+    def locked(self):
+        return self._coordinator.data.get(self._idx).locked
+
     async def async_set_temperature(self, **kwargs):
         """Set new target temperature."""
         temperature = kwargs.get(ATTR_TEMPERATURE)
