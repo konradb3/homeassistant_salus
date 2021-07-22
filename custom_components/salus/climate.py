@@ -7,7 +7,13 @@ import voluptuous as vol
 from homeassistant.components.climate import PLATFORM_SCHEMA, ClimateEntity
 from homeassistant.components.climate.const import (
     HVAC_MODE_HEAT,
-    HVAC_MODE_OFF
+    HVAC_MODE_COOL,
+    HVAC_MODE_OFF,
+    FAN_OFF,
+    FAN_AUTO,
+    FAN_LOW,
+    FAN_MEDIUM,
+    FAN_HIGH
 )
 from homeassistant.const import (
     ATTR_TEMPERATURE,
@@ -199,17 +205,25 @@ class SalusThermostat(ClimateEntity):
         await self._gateway.set_climate_device_temperature(self._idx, temperature)
         await self._coordinator.async_request_refresh()
 
-    # TODO: Stubbing these out for now
-    async def async_set_locked(self, **kwargs):
-        """Set locked (true, false)."""
-        locked = False
-        await self._gateway.set_climate_device_locked(self._idx, locked)
-        await self._coordinator.async_request_refresh()
+    # TODO: Not listed in methods here https://developers.home-assistant.io/docs/core/entity/climate/#methods
+    # async def async_set_locked(self, locked):
+    #     """Set locked (true, false)."""
+    #     await self._gateway.set_climate_device_locked(self._idx, locked)
+    #     await self._coordinator.async_request_refresh()
 
-    async def async_set_fan_mode(self, **kwargs):
+    async def async_set_fan_mode(self, fan_mode):
         """Set fan speed (auto, low, medium, high, off)."""
-        fan_mode = 'off'
-        await self._gateway.set_climate_device_fan_speed(self._idx, fan_mode)
+        if fan_mode == FAN_OFF:
+            mode = "Off"
+        elif fan_mode == FAN_LOW:
+            mode = "Low"
+        elif fan_mode == FAN_MEDIUM:
+            mode = "Medium"
+        elif fan_mode == FAN_HIGH:
+            mode = "High"
+        else:
+            mode = "Auto"
+        await self._gateway.set_climate_device_fan_speed(self._idx, mode)
         await self._coordinator.async_request_refresh()
 
     async def async_set_hvac_mode(self, hvac_mode):
