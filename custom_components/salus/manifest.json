@@ -4,7 +4,7 @@
   "config_flow": true,
   "documentation": "https://github.com/jvitkauskas/homeassistant_salus",
   "issue_tracker": "https://github.com/jvitkauskas/homeassistant_salus/issues",
-  "requirements": ["git+https://github.com/mat2maa/pyit600.git@fc600-wip"],
+  "requirements": ["pyit600==0.2.7"],
   "dependencies": [],
   "codeowners": [
     "@jvitkauskas"

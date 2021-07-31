@@ -227,16 +227,17 @@ class SalusThermostat(ClimateEntity):
         await self._coordinator.async_request_refresh()
 
     async def async_set_hvac_mode(self, hvac_mode):
-        """Set operation mode (auto, heat, off)."""
-        if hvac_mode == HVAC_MODE_OFF:
-            preset = "Off"
-        elif hvac_mode == HVAC_MODE_HEAT:
-            preset = "Permanent Hold"
+        """Set operation mode (auto, heat, cool)."""
+        if hvac_mode == HVAC_MODE_HEAT:
+            mode = "heat"
+        elif hvac_mode == HVAC_MODE_COOL:
+            mode = "cool"
         else:
-            preset = "Follow Schedule"
-        await self.async_set_preset_mode(preset)
+            mode = "auto"
+        await self._gateway.set_climate_device_mode(self._idx, mode)
+        await self._coordinator.async_request_refresh()
 
     async def async_set_preset_mode(self, preset_mode):
-        """Set preset mode (Off, Permanent Hold, Follow Schedule)"""
+        """Set preset mode (Off, Permanent Hold, Eco, Temporary Hold, Follow Schedule)"""
         await self._gateway.set_climate_device_preset(self._idx, preset_mode)
         await self._coordinator.async_request_refresh()
