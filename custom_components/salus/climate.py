@@ -7,7 +7,13 @@ import voluptuous as vol
 from homeassistant.components.climate import PLATFORM_SCHEMA, ClimateEntity
 from homeassistant.components.climate.const import (
     HVAC_MODE_HEAT,
-    HVAC_MODE_OFF
+    HVAC_MODE_COOL,
+    HVAC_MODE_OFF,
+    FAN_OFF,
+    FAN_AUTO,
+    FAN_LOW,
+    FAN_MEDIUM,
+    FAN_HIGH
 )
 from homeassistant.const import (
     ATTR_TEMPERATURE,
@@ -179,6 +185,18 @@ class SalusThermostat(ClimateEntity):
     def preset_modes(self):
         return self._coordinator.data.get(self._idx).preset_modes
 
+    @property
+    def fan_mode(self):
+        return self._coordinator.data.get(self._idx).fan_mode
+
+    @property
+    def fan_modes(self):
+        return self._coordinator.data.get(self._idx).fan_modes
+
+    @property
+    def locked(self):
+        return self._coordinator.data.get(self._idx).locked
+
     async def async_set_temperature(self, **kwargs):
         """Set new target temperature."""
         temperature = kwargs.get(ATTR_TEMPERATURE)
@@ -187,17 +205,39 @@ class SalusThermostat(ClimateEntity):
         await self._gateway.set_climate_device_temperature(self._idx, temperature)
         await self._coordinator.async_request_refresh()
 
-    async def async_set_hvac_mode(self, hvac_mode):
-        """Set operation mode (auto, heat, off)."""
-        if hvac_mode == HVAC_MODE_OFF:
-            preset = "Off"
-        elif hvac_mode == HVAC_MODE_HEAT:
-            preset = "Permanent Hold"
+    # TODO: Not listed in methods here https://developers.home-assistant.io/docs/core/entity/climate/#methods
+    # async def async_set_locked(self, locked):
+    #     """Set locked (true, false)."""
+    #     await self._gateway.set_climate_device_locked(self._idx, locked)
+    #     await self._coordinator.async_request_refresh()
+
+    async def async_set_fan_mode(self, fan_mode):
+        """Set fan speed (auto, low, medium, high, off)."""
+        if fan_mode == FAN_OFF:
+            mode = "Off"
+        elif fan_mode == FAN_LOW:
+            mode = "Low"
+        elif fan_mode == FAN_MEDIUM:
+            mode = "Medium"
+        elif fan_mode == FAN_HIGH:
+            mode = "High"
         else:
-            preset = "Follow Schedule"
-        await self.async_set_preset_mode(preset)
+            mode = "Auto"
+        await self._gateway.set_climate_device_fan_mode(self._idx, mode)
+        await self._coordinator.async_request_refresh()
+
+    async def async_set_hvac_mode(self, hvac_mode):
+        """Set operation mode (auto, heat, cool)."""
+        if hvac_mode == HVAC_MODE_HEAT:
+            mode = "heat"
+        elif hvac_mode == HVAC_MODE_COOL:
+            mode = "cool"
+        else:
+            mode = "auto"
+        await self._gateway.set_climate_device_mode(self._idx, mode)
+        await self._coordinator.async_request_refresh()
 
     async def async_set_preset_mode(self, preset_mode):
-        """Set preset mode (Off, Permanent Hold, Follow Schedule)"""
+        """Set preset mode (Off, Permanent Hold, Eco, Temporary Hold, Follow Schedule)"""
         await self._gateway.set_climate_device_preset(self._idx, preset_mode)
         await self._coordinator.async_request_refresh()
