@@ -28,7 +28,9 @@ When you are done with configuration you should see your devices in Configuratio
 
 # Troubleshooting
 
-Check if you have "Local Wifi Mode" enabled:
+If you can't connect, try using `0000000000000000` as EUID.
+
+Also check if you have "Local Wifi Mode" enabled:
 * Open Smart Home app on your phone
 * Sign in
 * Double tap your Gateway to open info screen
