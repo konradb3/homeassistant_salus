@@ -1,6 +1,7 @@
 """Support for Salus iT600."""
 import logging
 import time
+from asyncio import sleep
 
 from homeassistant import config_entries, core
 from homeassistant.helpers import device_registry as dr
@@ -52,7 +53,7 @@ async def async_setup_gateway_entry(hass: core.HomeAssistant, entry: config_entr
                 if remaining_attempts == 0:
                     raise e
                 else:
-                    time.sleep(3)
+                    await sleep(3)
     except IT600ConnectionError as ce:
         _LOGGER.error("Connection error: check if you have specified gateway's HOST correctly.")
         return False
