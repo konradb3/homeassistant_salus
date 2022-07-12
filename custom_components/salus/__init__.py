@@ -65,7 +65,7 @@ async def async_setup_gateway_entry(hass: core.HomeAssistant, entry: config_entr
 
     gateway_info = gateway.get_gateway_device()
 
-    device_registry = await dr.async_get_registry(hass)
+    device_registry = dr.async_get(hass)
     device_registry.async_get_or_create(
         config_entry_id=entry.entry_id,
         connections={(dr.CONNECTION_NETWORK_MAC, gateway_info.unique_id)},
