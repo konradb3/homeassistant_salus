@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/jvitkauskas/homeassistant_salus"><img src="https://salus-smarthome.eu/wp-content/themes/salus-controls/img/logo.svg" height="140"></a>
+  <a href="https://github.com/epoplavskis/homeassistant_salus"><img src="https://salus-smarthome.eu/wp-content/themes/salus-controls/img/logo.svg" height="140"></a>
 </p>
 
 # HomeAssistant - Salus Controls iT600 Smart Home Custom Component
@@ -10,7 +10,7 @@ This is a custom component to allows you to control and monitor your Salus iT600
 
 # Supported devices
 
-See the [readme of underlying pyit600 library](https://github.com/jvitkauskas/pyit600/blob/master/README.md)
+See the [readme of underlying pyit600 library](https://github.com/epoplavskis/pyit600/blob/master/README.md)
 
 # Installation and Configuration
 
